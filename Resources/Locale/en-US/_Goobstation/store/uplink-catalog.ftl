@@ -349,3 +349,6 @@ uplink-bloodred-casette-desc = Provided by the most egotistical fashion designer
 
 uplink-syndiedrobe-name = Syndiedrobe
 uplink-syndiedrobe-desc = A vending machine stocked with Syndicate-branded clothing. Simple, sharp, and unmistakably red-and-black, it offers operatives a way to dress with Syndicate style.
+
+uplink-Pocket-of-Holding-name = Pocket of Holding
+uplink-Pocket-of-Holding-desc = This small piece of tech allows the user to insert any item into it to their hearts content, but only ONE item.

@@ -18,3 +18,23 @@
     - NukeOpsUplink
     - LoneOpsUplink
     - NukeOpsCommanderUplink
+
+- type: entity
+  parent: [BaseItem, BaseSyndicateContraband]
+  name: Pocket of Holding
+  id: PocketOfHolding
+  description: This small piece of tech allows the user to insert any item into it to their hearts content, but only ONE item.
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Objects/Fun/toys.rsi
+    state: plushie_fern
+  - type: ContainerContainer
+    containers:
+      item: !type:ContainerSlot
+        showEnts: false
+        occludes: true
+        ent: null
+  - type: ItemSlots
+    slots:
+      item:
+        name: item
