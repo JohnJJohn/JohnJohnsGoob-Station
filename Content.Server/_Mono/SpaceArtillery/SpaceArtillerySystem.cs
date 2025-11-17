@@ -69,7 +69,7 @@ public sealed partial class SpaceArtillerySystem : EntitySystem
 
     private void OnApcChanged(EntityUid uid, SpaceArtilleryComponent component, ref PowerChangedEvent args)
     {
-        if (TryComp<BatterySelfRechargerComponent>(uid, out var batteryCharger))
+        if (TryComp<Goobstation.Shared.Power.Components.BatterySelfRechargerComponent>(uid, out var batteryCharger))
         {
             if (args.Powered)
             {

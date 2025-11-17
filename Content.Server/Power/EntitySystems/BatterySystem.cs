@@ -124,7 +124,7 @@ namespace Content.Server.Power.EntitySystems
 
         public override void Update(float frameTime)
         {
-            var query = EntityQueryEnumerator<BatterySelfRechargerComponent, BatteryComponent>();
+            var query = EntityQueryEnumerator<Goobstation.Shared.Power.Components.BatterySelfRechargerComponent, BatteryComponent>();
             while (query.MoveNext(out var uid, out var comp, out var batt))
             {
                 if (!comp.AutoRecharge || IsFull(uid, batt))
@@ -240,7 +240,7 @@ namespace Content.Server.Power.EntitySystems
         /// </summary>
         public void TrySetChargeCooldown(EntityUid uid, float value = -1)
         {
-            if (!TryComp<BatterySelfRechargerComponent>(uid, out var batteryself))
+            if (!TryComp<Goobstation.Shared.Power.Components.BatterySelfRechargerComponent>(uid, out var batteryself))
                 return;
 
             if (!batteryself.AutoRechargePause)
@@ -259,7 +259,7 @@ namespace Content.Server.Power.EntitySystems
         /// <summary>
         /// Puts the entity's self recharge on cooldown for the specified time.
         /// </summary>
-        public void SetChargeCooldown(EntityUid uid, float value, BatterySelfRechargerComponent? batteryself = null)
+        public void SetChargeCooldown(EntityUid uid, float value, Goobstation.Shared.Power.Components.BatterySelfRechargerComponent? batteryself = null)
         {
             if (!Resolve(uid, ref batteryself))
                 return;

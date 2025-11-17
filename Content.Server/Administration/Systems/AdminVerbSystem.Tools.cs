@@ -290,7 +290,7 @@ public sealed partial class AdminVerbSystem
                 Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/AdminActions/infinite_battery.png")),
                 Act = () =>
                 {
-                    var recharger = EnsureComp<BatterySelfRechargerComponent>(args.Target);
+                    var recharger = EnsureComp<Goobstation.Shared.Power.Components.BatterySelfRechargerComponent>(args.Target);
                     recharger.AutoRecharge = true;
                     recharger.AutoRechargeRate = battery.MaxCharge; // Instant refill.
                     recharger.AutoRechargePause = false; // No delay.
@@ -687,7 +687,7 @@ public sealed partial class AdminVerbSystem
                         if (!HasComp<StationInfiniteBatteryTargetComponent>(ent))
                             continue;
 
-                        var recharger = EnsureComp<BatterySelfRechargerComponent>(ent);
+                        var recharger = EnsureComp<Goobstation.Shared.Power.Components.BatterySelfRechargerComponent>(ent);
                         var battery = EnsureComp<BatteryComponent>(ent);
 
                         recharger.AutoRecharge = true;

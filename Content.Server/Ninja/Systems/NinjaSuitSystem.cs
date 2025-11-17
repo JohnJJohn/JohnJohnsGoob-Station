@@ -108,7 +108,7 @@ public sealed class NinjaSuitSystem : SharedNinjaSuitSystem
     {
         // if a cell is able to automatically recharge, boost the score drastically depending on the recharge rate,
         // this is to ensure a ninja can still upgrade to a micro reactor cell even if they already have a medium or high.
-        if (TryComp<BatterySelfRechargerComponent>(uid, out var selfcomp) && selfcomp.AutoRecharge)
+        if (TryComp<Goobstation.Shared.Power.Components.BatterySelfRechargerComponent>(uid, out var selfcomp) && selfcomp.AutoRecharge)
             return battcomp.MaxCharge + (selfcomp.AutoRechargeRate*AutoRechargeValue);
         return battcomp.MaxCharge;
     }

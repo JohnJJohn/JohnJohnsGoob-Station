@@ -1581,3 +1581,13 @@
     Telecrystal: 20
   categories:
   - UplinkDeception
+
+- type: listing
+  id: UplinkPocketOfHoldingRecharge
+  name: uplink-Pocket-of-Holding-recharge-name
+  description: uplink-Pocket-of-Holding-recharge-desc
+  productEntity: PocketOfHoldingRecharge
+  cost:
+    Telecrystal: 40
+  categories:
+  - UplinkDeception

@@ -352,3 +352,6 @@ uplink-syndiedrobe-desc = A vending machine stocked with Syndicate-branded cloth
 
 uplink-Pocket-of-Holding-name = Pocket of Holding
 uplink-Pocket-of-Holding-desc = This small piece of tech allows the user to insert any item into it to their hearts content, but only ONE item.
+
+uplink-Pocket-of-Holding-recharge-name = Pocket of Holding (recharge)
+uplink-Pocket-of-Holding-recharge-desc = This small piece of tech allows the user to insert any item into it to their hearts content, but only ONE item, this version recharges the inserted item.

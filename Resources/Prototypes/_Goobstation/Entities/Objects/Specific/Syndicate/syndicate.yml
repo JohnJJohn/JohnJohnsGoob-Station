@@ -38,3 +38,11 @@
     slots:
       item:
         name: item
+
+- type: entity
+  parent: PocketOfHolding
+  name: Pocket of Holding Recharge
+  id: PocketOfHoldingRecharge
+  description: This small piece of tech allows the user to insert any item into it to their hearts content, but only ONE item, this version recharges the inserted item.
+  components:
+    - type: ChargeItemInSlot

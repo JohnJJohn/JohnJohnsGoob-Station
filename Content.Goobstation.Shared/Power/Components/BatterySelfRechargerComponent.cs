@@ -13,7 +13,7 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-namespace Content.Server.Power.Components
+namespace Content.Goobstation.Shared.Power.Components // Moved to content.shared by goobstation
 {
     /// <summary>
     ///     Self-recharging battery.

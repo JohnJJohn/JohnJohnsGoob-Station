@@ -50,7 +50,7 @@ public sealed class RechargeableBlockingSystem : EntitySystem
     private int GetRemainingTime(EntityUid uid)
     {
         if (!_battery.TryGetBatteryComponent(uid, out var batteryComponent, out var batteryUid)
-            || !TryComp<BatterySelfRechargerComponent>(batteryUid, out var recharger)
+            || !TryComp<Goobstation.Shared.Power.Components.BatterySelfRechargerComponent>(batteryUid, out var recharger)
             || recharger is not { AutoRechargeRate: > 0, AutoRecharge: true })
             return 0;
 
@@ -74,7 +74,7 @@ public sealed class RechargeableBlockingSystem : EntitySystem
         if (!component.Discharged)
             return;
 
-        if (HasComp<BatterySelfRechargerComponent>(uid))
+        if (HasComp<Goobstation.Shared.Power.Components.BatterySelfRechargerComponent>(uid))
             args.Popup = Loc.GetString("rechargeable-blocking-remaining-time-popup", ("remainingTime", GetRemainingTime(uid)));
         else
             args.Popup = Loc.GetString("rechargeable-blocking-not-enough-charge-popup");
@@ -96,7 +96,7 @@ public sealed class RechargeableBlockingSystem : EntitySystem
         if (!_battery.TryGetBatteryComponent(uid, out var battery, out _))
             return;
 
-        BatterySelfRechargerComponent? recharger;
+        Goobstation.Shared.Power.Components.BatterySelfRechargerComponent? recharger;
         if (battery.CurrentCharge < 1)
         {
             if (TryComp(uid, out recharger))
