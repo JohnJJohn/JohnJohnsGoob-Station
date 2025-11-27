@@ -743,6 +743,22 @@
         acts: [ "Destruction" ]
 
 - type: entity
+  parent: PlushieXeve
+  id: XevePlushRadioactive
+  name: Radioactive Xeve byrd Plush
+  suffix: RADIOACTIVE DANGER DANGER!!
+  components:
+  - type: RadiationSource
+    intensity: 10
+    slope: 3
+  - type: PointLight
+    color: "#22C217"
+    radius: 3
+    energy: 2
+    mask: /Textures/Effects/LightMasks/cone.png
+
+
+- type: entity
   parent: BaseItem
   id: DiscoBeachBall
   name: disco beach ball
