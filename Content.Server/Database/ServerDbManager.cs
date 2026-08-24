@@ -160,6 +160,7 @@ namespace Content.Server.Database
         Task<int> GetServerCurrency(NetUserId userId); // Goobstation
         Task SetServerCurrency(NetUserId userId, int currency); // Goobstation
         Task<int> ModifyServerCurrency(NetUserId userId, int currencyDelta); // Goobstation
+        Task<float> ModifyNanoCoins(NetUserId userId, float amount); // Goobstation
 
         Task<bool> SetLastRolledAntag(NetUserId userId, TimeSpan to); // Goobstation
         Task<TimeSpan> GetLastRolledAntag(NetUserId userId); // Goobstation
@@ -656,6 +657,12 @@ namespace Content.Server.Database
         {
             DbReadOpsMetric.Inc();
             return RunDbCommand(() => _db.ModifyServerCurrency(userId, currencyDelta));
+        }
+
+        public Task<float> ModifyNanoCoins(NetUserId userId, float amount)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.ModifyNanoCoins(userId, amount));
         }
 
         public Task<TimeSpan> GetLastRolledAntag(NetUserId userId) // Goobstation

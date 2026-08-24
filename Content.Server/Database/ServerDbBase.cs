@@ -710,6 +710,19 @@ namespace Content.Server.Database
             return dbPlayer.ServerCurrency;
         }
 
+        public async Task<float> ModifyNanoCoins(NetUserId userId, float amount) // Goobstation
+        {
+            await using var db = await GetDb();
+
+            var dbPlayer = await db.DbContext.Player.Where(dbPlayer => dbPlayer.UserId == userId).SingleOrDefaultAsync();
+            if (dbPlayer == null)
+                return amount;
+
+            dbPlayer.NanoCoins += amount;
+            await db.DbContext.SaveChangesAsync();
+            return dbPlayer.NanoCoins;
+        }
+
         public async Task<TimeSpan> GetLastRolledAntag(NetUserId userId) // Goobstation
         {
             await using var db = await GetDb();

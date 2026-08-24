@@ -113,6 +113,50 @@ namespace Content.Goobstation.Server.ServerCurrency.Commands
         }
     }
 
+    [AnyCommand]
+    public sealed class AddNanoCoins : IConsoleCommand
+    {
+        [Dependency] private readonly ICommonNanoCoinManager _currencyMan = default!;
+
+        public string Command => "AddNanoCoins";
+        public string Description => "Adds nanocoins";
+        public string Help => Loc.GetString("server-currency-gift-command-help");
+
+        public void Execute(IConsoleShell shell, string argStr, string[] args)
+        {
+            if (args.Length != 1)
+            {
+                shell.WriteError(Loc.GetString("shell-wrong-arguments-number"));
+                return;
+            }
+
+            if(shell.Player is not { } player){
+                shell.WriteError(Loc.GetString("shell-cannot-run-command-from-server"));
+                return;
+            }
+
+            if (!float.TryParse(args[0], out float amount))
+            {
+                shell.WriteError(Loc.GetString("server-currency-command-error-2"));
+                return;
+            }
+
+            if (amount == 0)
+                amount = 1; // Trolled
+
+            _currencyMan.ChangeNanoCoins(shell.Player.UserId, amount);
+        }
+
+        public CompletionResult GetCompletion(IConsoleShell shell, string[] args)
+        {
+            return args.Length switch
+            {
+                1 => CompletionResult.FromHintOptions(CompletionHelper.SessionNames(), Loc.GetString("server-currency-command-completion-1")),
+                _ => CompletionResult.Empty
+            };
+        }
+    }
+
     [AdminCommand(AdminFlags.Host)]
     public sealed class AddServerCurrencyCommand : IConsoleCommand
     {

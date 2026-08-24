@@ -24,5 +24,6 @@ internal static class ServerGoobContentIoC
         instance.Register<IJoinQueueManager, JoinQueueManager>();
         instance.Register<IFullScreenImageJumpscare, ServerFullScreenImageJumpscare>();
         instance.Register<ICommonCurrencyManager, ServerCurrencyManager>();
+        instance.Register<ICommonNanoCoinManager, ServerNanoCoinsSystem>();
     }
 }

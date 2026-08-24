@@ -631,6 +631,7 @@ namespace Content.Server.Database
         public List<AdminLogPlayer> AdminLogs { get; set; } = null!;
 
         public int ServerCurrency { get; set; } // Goobstation - Goob coin
+        public float NanoCoins { get; set; }
 
         public TimeSpan? LastRolledAntag { get; set; } // Goobstation
 

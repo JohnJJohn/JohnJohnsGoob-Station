@@ -12,6 +12,7 @@ public sealed class EntryPoint : GameServer
 {
     private IVoiceChatServerManager _voiceManager = default!;
     private ICommonCurrencyManager _curr = default!;
+    private ICommonNanoCoinManager _coin = default!;
     private IJoinQueueManager _joinQueue = default!;
 
     public override void Init()
@@ -29,6 +30,9 @@ public sealed class EntryPoint : GameServer
 
         _curr = IoCManager.Resolve<ICommonCurrencyManager>();
         _curr.Initialize();
+
+        _coin = IoCManager.Resolve<ICommonNanoCoinManager>();
+        _coin.Initialize();
     }
 
     public override void Update(ModUpdateLevel level, FrameEventArgs frameEventArgs)
@@ -50,5 +54,6 @@ public sealed class EntryPoint : GameServer
 
         _curr.Shutdown();
         _voiceManager.Shutdown();
+        _coin.Shutdown();
     }
 }
