@@ -3,6 +3,7 @@ using Content.Shared.Body.Systems;
 using Content.Shared.Interaction;
 using Content.Shared.Power.EntitySystems;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Containers;
 using Robust.Shared.Timing;
 
 namespace Content.Goobstation.Shared.Shredder;
@@ -14,10 +15,12 @@ public sealed class ShredderSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedBodySystem _body = default!;
+    [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
 
     public override void Initialize()
     {
         SubscribeLocalEvent<ShredderComponent, InteractUsingEvent>(OnInteract);
+        SubscribeLocalEvent<ShredderComponent, MapInitEvent>(OnMapInit);
     }
 
     public override void Update(float frameTime)
@@ -33,8 +36,25 @@ public sealed class ShredderSystem : EntitySystem
 
             _appearanceSystem.SetData(uid, ShredderVisuals.VisualState, ShredderVisualsState.Normal);
             shredder.FinishedShreddingTime = TimeSpan.Zero;
+
+
+            if (shredder.StoredEntity is { } item)
+            {
+                if (!HasComp<BodyComponent>(item))
+                    PredictedQueueDel(item);
+                else
+                    _body.GibBody(item);
+
+                shredder.StoredEntity = null;
+            }
+
             RemComp<ActiveShredderComponent>(uid);
         }
+    }
+
+    private void OnMapInit(Entity<ShredderComponent> ent, ref MapInitEvent args)
+    {
+        ent.Comp.Container = _containerSystem.EnsureContainer<ContainerSlot>(ent.Owner, "shredder_container");
     }
 
     private void OnInteract(Entity<ShredderComponent> ent, ref InteractUsingEvent args)
@@ -46,7 +66,7 @@ public sealed class ShredderSystem : EntitySystem
 
         if (!TryComp<ShreddableComponent>(args.Used, out var shreddable)
             || !_power.IsPowered(ent.Owner)
-            || ent.Comp.FinishedShreddingTime != TimeSpan.Zero)
+            || ent.Comp.StoredEntity is not null)
             return;
 
         ent.Comp.ShreddingState = shreddable.ShredderState;
@@ -57,9 +77,9 @@ public sealed class ShredderSystem : EntitySystem
 
         ent.Comp.FinishedShreddingTime = _timing.CurTime + ent.Comp.ShreddingTime;
 
-        if (!HasComp<BodyComponent>(args.Used))
-            PredictedQueueDel(args.Used);
-        else
-            _body.GibBody(args.Used);
+        if (ent.Comp.Container is not null)
+            _containerSystem.Insert(args.Used, ent.Comp.Container);
+
+        ent.Comp.StoredEntity = args.Used;
     }
 }

@@ -31,7 +31,7 @@
   - type: NanoChatCard # DeltaV
   # <Goob>
   - type: Shreddable
-    shredderState: shreddingID
+    shredderState: shredding_id
   - type: EmitSoundOnPickup
     sound:
       path: /Audio/_Goobstation/Items/handling/card_pickup.ogg
@@ -144,6 +144,10 @@
     - HighRiskItem
   - type: StealTarget
     stealGroup: CaptainIDCard
+  # <Goob>
+  - type: Shreddable
+    shredderState: shredding_gold
+  # </Goob>
 
 - type: entity
   parent: IDCardStandard

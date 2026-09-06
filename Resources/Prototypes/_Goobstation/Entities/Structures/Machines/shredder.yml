@@ -11,3 +11,6 @@
       map: [ "enum.FaxMachineVisuals.VisualState" ]
   - type: Shredder
   - type: Appearance
+  - type: ContainerContainer
+    containers:
+      shredder_container: !type:ContainerSlot

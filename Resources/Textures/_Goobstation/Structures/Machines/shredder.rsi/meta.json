@@ -23,7 +23,7 @@
       ]
     },
     {
-      "name": "shreddingHammy",
+      "name": "shredding_hammy",
       "delays": [
         [
           0.7,
@@ -38,7 +38,22 @@
       ]
     },
     {
-      "name": "shreddingID",
+      "name": "shredding_id",
+      "delays": [
+        [
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7,
+          0.7
+        ]
+      ]
+    },
+    {
+      "name": "shredding_gold",
       "delays": [
         [
           0.7,

@@ -752,7 +752,7 @@
     stampLargeIcon: "large_stamp-hamster"
   # <Goob>
   - type: Shreddable
-    shredderState: shreddingHammy
+    shredderState: shredding_hammy
   - type: LanguageKnowledge # Einstein Engines - Language
     speaks:
     - Mouse

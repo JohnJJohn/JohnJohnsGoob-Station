@@ -1,4 +1,5 @@
 using Robust.Shared.Audio;
+using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
 
@@ -17,6 +18,12 @@ public sealed partial class ShredderComponent : Component
 
     [DataField]
     public SoundPathSpecifier ShreddingSound = new ("/Audio/_Goobstation/Machines/Shredder/shredder.ogg");
+
+    [DataField]
+    public ContainerSlot? Container;
+
+    [ViewVariables]
+    public EntityUid? StoredEntity;
 }
 
 [Serializable, NetSerializable]
